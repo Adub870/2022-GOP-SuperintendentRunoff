@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1300px;
+            height: 972px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/2020_voter_precincts_4326_0.js"></script>
+        <script src="data/ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[35.763582708736884,-107.49651413161502],[41.413061328678054,-98.09430714745474]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_2020_voter_precincts_4326_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['st_senate'] !== null ? autolinker.link(feature.properties['st_senate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">county_nam</th>\
+                        <td>' + (feature.properties['county_nam'] !== null ? autolinker.link(feature.properties['county_nam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pct_ceb</th>\
+                        <td>' + (feature.properties['pct_ceb'] !== null ? autolinker.link(feature.properties['pct_ceb'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">margin_MARGIN</th>\
+                        <td>' + (feature.properties['margin_MARGIN'] !== null ? autolinker.link(feature.properties['margin_MARGIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2020_voter_precincts_4326_0_0(feature) {
+            if (feature.properties['margin_MARGIN'] >= 0.500000 && feature.properties['margin_MARGIN'] <= 1.000000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(102,62,0,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.400000 && feature.properties['margin_MARGIN'] <= 0.499990 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(135,88,15,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.300000 && feature.properties['margin_MARGIN'] <= 0.499900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,117,37,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.200000 && feature.properties['margin_MARGIN'] <= 0.299900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,142,52,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.150000 && feature.properties['margin_MARGIN'] <= 0.199900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,170,100,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.100000 && feature.properties['margin_MARGIN'] <= 0.149900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,197,135,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.050000 && feature.properties['margin_MARGIN'] <= 0.099900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(246,212,164,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.000100 && feature.properties['margin_MARGIN'] <= 0.049900 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,228,188,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= 0.000000 && feature.properties['margin_MARGIN'] <= 0.000000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,105,254,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.049990 && feature.properties['margin_MARGIN'] <= -0.000100 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(186,224,254,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.099900 && feature.properties['margin_MARGIN'] <= -0.050000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(165,187,247,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.149990 && feature.properties['margin_MARGIN'] <= -0.100000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(136,146,233,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.199900 && feature.properties['margin_MARGIN'] <= -0.150000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,102,222,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.299900 && feature.properties['margin_MARGIN'] <= -0.200000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(53,49,204,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.399990 && feature.properties['margin_MARGIN'] <= -0.300000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(36,34,170,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -0.499900 && feature.properties['margin_MARGIN'] <= -0.400000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(15,18,135,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['margin_MARGIN'] >= -1.000000 && feature.properties['margin_MARGIN'] <= -0.500000 ) {
+                return {
+                pane: 'pane_2020_voter_precincts_4326_0',
+                opacity: 1,
+                color: 'rgba(128,14,16,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,0,102,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_2020_voter_precincts_4326_0');
+        map.getPane('pane_2020_voter_precincts_4326_0').style.zIndex = 400;
+        map.getPane('pane_2020_voter_precincts_4326_0').style['mix-blend-mode'] = 'normal';
+        var layer_2020_voter_precincts_4326_0 = new L.geoJson(json_2020_voter_precincts_4326_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_2020_voter_precincts_4326_0',
+            layerName: 'layer_2020_voter_precincts_4326_0',
+            pane: 'pane_2020_voter_precincts_4326_0',
+            onEachFeature: pop_2020_voter_precincts_4326_0,
+            style: style_2020_voter_precincts_4326_0_0,
+        });
+        bounds_group.addLayer(layer_2020_voter_precincts_4326_0);
+        map.addLayer(layer_2020_voter_precincts_4326_0);
+        function pop_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['statefp'] !== null ? autolinker.link(feature.properties['statefp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['countyfp'] !== null ? autolinker.link(feature.properties['countyfp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['countyns'] !== null ? autolinker.link(feature.properties['countyns'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cntyidfp'] !== null ? autolinker.link(feature.properties['cntyidfp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['namelsad'] !== null ? autolinker.link(feature.properties['namelsad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['lsad'] !== null ? autolinker.link(feature.properties['lsad'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['classfp'] !== null ? autolinker.link(feature.properties['classfp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mtfcc'] !== null ? autolinker.link(feature.properties['mtfcc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['funcstat'] !== null ? autolinker.link(feature.properties['funcstat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['aland'] !== null ? autolinker.link(feature.properties['aland'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['awater'] !== null ? autolinker.link(feature.properties['awater'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['intptlat'] !== null ? autolinker.link(feature.properties['intptlat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['intptlon'] !== null ? autolinker.link(feature.properties['intptlon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['county_nam'] !== null ? autolinker.link(feature.properties['county_nam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rfc_map'] !== null ? autolinker.link(feature.properties['rfc_map'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['topo'] !== null ? autolinker.link(feature.properties['topo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ok_history'] !== null ? autolinker.link(feature.properties['ok_history'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['wikipedia'] !== null ? autolinker.link(feature.properties['wikipedia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ac_land'] !== null ? autolinker.link(feature.properties['ac_land'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sqmi_land'] !== null ? autolinker.link(feature.properties['sqmi_land'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ac_water'] !== null ? autolinker.link(feature.properties['ac_water'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sqmi_water'] !== null ? autolinker.link(feature.properties['sqmi_water'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['csafp'] !== null ? autolinker.link(feature.properties['csafp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cbsafp'] !== null ? autolinker.link(feature.properties['cbsafp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1_0() {
+            return {
+                pane: 'pane_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1');
+        map.getPane('pane_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1').style.zIndex = 401;
+        map.getPane('pane_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1').style['mix-blend-mode'] = 'normal';
+        var layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1 = new L.geoJson(json_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1',
+            layerName: 'layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1',
+            pane: 'pane_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1',
+            onEachFeature: pop_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1,
+            style: style_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1_0,
+        });
+        bounds_group.addLayer(layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1);
+        map.addLayer(layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1);
+        setBounds();
+        var i = 0;
+        layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #2f2f2f; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_ok_counties_plus__state_EPSG_32124ok_counties_plusshp_1]);
+        });
+        </script>
+    </body>
+</html>
